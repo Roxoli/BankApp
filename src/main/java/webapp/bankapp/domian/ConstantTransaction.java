@@ -24,10 +24,6 @@ public class ConstantTransaction {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public BankAccount getBankAccount() {
         return bankAccount;
     }

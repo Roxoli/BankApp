@@ -1,8 +1,8 @@
 package webapp.bankapp.domian;
 
-
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Entity
 public class BankAccount {
@@ -11,12 +11,6 @@ public class BankAccount {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountNumber")
-    public ConstantTransaction constantTransaction;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountNumber")
-    private History history;
-
     private String accountNumber;
     private String login;
     private String password;
@@ -24,28 +18,14 @@ public class BankAccount {
     private String lastName;
     private BigDecimal balance;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountNumber")
+    public Set<ConstantTransaction> constantTransaction;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountNumber")
+    private Set<History> history;
+
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public ConstantTransaction getConstantTransaction() {
-        return constantTransaction;
-    }
-
-    public void setConstantTransaction(ConstantTransaction constantTransaction) {
-        this.constantTransaction = constantTransaction;
-    }
-
-    public History getHistory() {
-        return history;
-    }
-
-    public void setHistory(History history) {
-        this.history = history;
     }
 
     public String getAccountNumber() {
@@ -94,5 +74,21 @@ public class BankAccount {
 
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
+    }
+
+    public Set<ConstantTransaction> getConstantTransaction() {
+        return constantTransaction;
+    }
+
+    public void setConstantTransaction(Set<ConstantTransaction> constantTransaction) {
+        this.constantTransaction = constantTransaction;
+    }
+
+    public Set<History> getHistory() {
+        return history;
+    }
+
+    public void setHistory(Set<History> history) {
+        this.history = history;
     }
 }
