@@ -3,6 +3,7 @@ package webapp.bankapp.domian;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Entity
 public class BankAccount {
@@ -12,10 +13,10 @@ public class BankAccount {
     private Long id;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountNumber")
-    public ConstantTransaction constantTransaction;
+    public Set<ConstantTransaction> constantTransaction;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountNumber")
-    private History history;
+    private Set<History> history;
 
     private String accountNumber;
     private String login;
@@ -32,22 +33,6 @@ public class BankAccount {
         this.id = id;
     }
 
-    public ConstantTransaction getConstantTransaction() {
-        return constantTransaction;
-    }
-
-    public void setConstantTransaction(ConstantTransaction constantTransaction) {
-        this.constantTransaction = constantTransaction;
-    }
-
-    public History getHistory() {
-        return history;
-    }
-
-    public void setHistory(History history) {
-        this.history = history;
-    }
-
     public String getAccountNumber() {
         return accountNumber;
     }
@@ -62,6 +47,22 @@ public class BankAccount {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public Set<ConstantTransaction> getConstantTransaction() {
+        return constantTransaction;
+    }
+
+    public void setConstantTransaction(Set<ConstantTransaction> constantTransaction) {
+        this.constantTransaction = constantTransaction;
+    }
+
+    public Set<History> getHistory() {
+        return history;
+    }
+
+    public void setHistory(Set<History> history) {
+        this.history = history;
     }
 
     public String getPassword() {
