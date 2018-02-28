@@ -26,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/webjars/**", "/login").permitAll()
                 .anyRequest().authenticated();
     }
-    
+
     @SuppressWarnings("deprecation")
     @Bean
     public static NoOpPasswordEncoder passwordEncoder() {
