@@ -12,16 +12,15 @@ import java.util.Random;
 public class BankAccountServiceImpl implements BankAccountService {
 
     private BankAccountRepository bankAccountRepository;
+    private PasswordEncoder passwordEncoder;
     private String login = "";
     private Random random = new Random();
 
     @Autowired
-    public BankAccountServiceImpl(BankAccountRepository bankAccountRepository) {
+    public BankAccountServiceImpl(BankAccountRepository bankAccountRepository, PasswordEncoder passwordEncoder) {
         this.bankAccountRepository = bankAccountRepository;
+        this.passwordEncoder = passwordEncoder;
     }
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     private String generateLogin(BankAccount bankAccount){
         login += bankAccount.getFirstName().substring(0,2)
@@ -35,10 +34,8 @@ public class BankAccountServiceImpl implements BankAccountService {
 
     @Override
     public BankAccount createNewAccount(BankAccount bankAccount) {
-
-        bankAccount.setLogin(generateLogin(bankAccount));
-        bankAccount.setPassword(passwordEncoder.encode(bankAccount.getPassword()));
-
+            bankAccount.setLogin(generateLogin(bankAccount));
+            bankAccount.setPassword(passwordEncoder.encode(bankAccount.getPassword()));
         return bankAccountRepository.save(bankAccount);
     }
 }

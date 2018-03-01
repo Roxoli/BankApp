@@ -7,9 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import webapp.bankapp.domian.BankAccount;
 import webapp.bankapp.service.BankAccountService;
 
-import java.math.BigInteger;
-import java.util.Random;
-
 @Controller
 public class CreateAccountController {
 
