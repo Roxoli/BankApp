@@ -1,6 +1,7 @@
 package webapp.bankapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import webapp.bankapp.domian.BankAccount;
 import webapp.bankapp.repository.BankAccountRepository;
@@ -19,6 +20,9 @@ public class BankAccountServiceImpl implements BankAccountService {
         this.bankAccountRepository = bankAccountRepository;
     }
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     private String generateLogin(BankAccount bankAccount){
         login += bankAccount.getFirstName().substring(0,2)
                 + bankAccount.getLastName().substring(0,2)
@@ -32,7 +36,8 @@ public class BankAccountServiceImpl implements BankAccountService {
     @Override
     public BankAccount createNewAccount(BankAccount bankAccount) {
 
-        bankAccount.setLogin(generateLogin(BankAccount bankAccount));
+        bankAccount.setLogin(generateLogin(bankAccount));
+        bankAccount.setPassword(passwordEncoder.encode(bankAccount.getPassword()));
 
         return bankAccountRepository.save(bankAccount);
     }
