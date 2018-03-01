@@ -1,11 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
+    <title>Recipe Home</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
+          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"/>
+
     <title>Bank app</title>
 </head>
 <body>
-<h1>Zalogowany jako [[${#httpServletRequest.remoteUser}]]</h1>
+<div style="text-decoration: navy; size: 68px">Bank app.</div>
+<h2 th:remove="all">Zalogowany jako [[${#httpServletRequest.remoteUser}]]</h2>
+<div class="row">
+    <a href="transacions.html"<div>Przelew</div></a>
+    <div>Przelewy stałe</div>
+    <div>Historia transakcji</div>
+</div>
 
 </body>
 </html>

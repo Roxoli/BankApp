@@ -21,12 +21,8 @@ import javax.jws.soap.SOAPBinding;
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private UserDetailsService userDetailsService;
-
     @Autowired
-    public SecurityConfig securityConfig(UserDetailsService userDetailsService){
-        this.userDetailsService = userDetailsService;
-    }
+    private UserDetailsService userDetailsService;
 
     @Bean
     public UserDetailsService userDetailsService() {

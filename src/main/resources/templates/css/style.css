@@ -1,0 +1,61 @@
+.login_menu {
+    background: gainsboro;
+    width:400px;
+    margin: 50px auto;
+    padding: 50px 50px 50px 50px;
+    border-bottom-left-radius: 23px;
+    border-top-right-radius: 23px;
+    border: 2px gray solid;
+}
+h2 {
+    text-align: center;
+}
+.dot {
+    font-family: "Droid Sans";
+    font-size: 32pt;
+    color: red;
+}
+.bank_name {
+    font-family: "Droid Sans";
+    color: deepskyblue;
+    font-size: 32pt;
+}
+.login_menu_left_col {
+    width: 100px;
+    padding-top: 10px;
+    text-align: center;
+}
+.logo {
+    background: gainsboro;
+    margin-top: 10px;
+    margin-left: 10px;
+    text-align: center;
+    padding: 5px;
+    border-bottom-left-radius: 23px;
+    border-top-right-radius: 23px;
+    border: 2px gray solid;
+    width: 200px;
+    position: relative;
+    size: 30px;
+}
+.row {
+    display:flex;
+    justify-content: center;
+    width: 400px;
+    padding: 30 px;
+}
+.login_menu_right_col {
+    padding-top: 10px;
+    text-align: center;
+    width: 200px;
+}
+.login_menu_submit {
+    padding-top: 10px;
+    text-align: center;
+    width: 200px;
+    margin: 0 auto;
+}
+body {
+    background-image:url('../img/background.png');
+    background-size: 100%;
+}
