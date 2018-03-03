@@ -7,6 +7,9 @@
     border-top-right-radius: 23px;
     border: 2px gray solid;
 }
+a {
+    text-decoration: none;
+}
 h2 {
     text-align: center;
 }
@@ -42,7 +45,7 @@ h2 {
     display:flex;
     justify-content: center;
     width: 400px;
-    padding: 30 px;
+    padding: 30px;
 }
 .login_menu_right_col {
     padding-top: 10px;
@@ -56,6 +59,6 @@ h2 {
     margin: 0 auto;
 }
 body {
-    background-image:url('../img/background.png');
+    background-image:url('../static/img/background.png');
     background-size: 100%;
 }
