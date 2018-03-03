@@ -17,7 +17,19 @@
     <a href="constant_transaction.html"><div class="menu">Przelewy stałe</div></a>
     <a href="history.html"><div class="menu">Historia transakcji</div></a>
 </div>
-<div class="working_space"></div>
+<div class="working_space">
+    <table>
+        <tr><td class="data">Data</td><td class="receiver">Odbiorca</td><td class="description">Opis</td><td class="value">Kwota</td></tr>
+        <tr th:remove="all" class="new_record"><td>Data</td><td>Odbiorca</td><td>Opis</td><td>Kwota</td></tr>
+        <tr th:each="history : ${history}" class="new_record">
+            <td th:text="${history.data}">Data</td>
+            <td th:text="${history.accountNumber} + ${history.address}">Numer konta/odbiorca</td>
+            <td th:text="${history.description}">Opis</td>
+            <td th:text="${history.description}">Kwota</td>
+        </tr>
+    </table>
+
+</div>
 
 </body>
 </html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <link rel="stylesheet" th:href="@{static/css/layout.css}" href="../static/css/layout.css" type="text/css" />
+    <title>Spring Security Example </title>
+</head>
+<body>
+<a th:href="@{login.html}"><div class="logo"><span class="bank_name">Bank app</span><span class="dot">.</span></div></a>
+
+<div class="login_menu">
+    <h2>Login</h2>
+<form th:action="@{/login}" method="post">
+    <div class="row"><div class="login_menu_left_col">First name:</div><div class="login_menu_right_col"><input class="textbox" type="text" name="firstname"/> </div></div>
+    <div class="row"><div class="login_menu_left_col">Last name:</div><div class="login_menu_right_col"><input class="textbox" type="text" name="lastname"/> </div></div>
+    <div class="row"><div class="login_menu_left_col">Address:</div><div class="login_menu_right_col"><input class="textbox" type="password" name="address"/> </div></div>
+    <div class="row"><div class="login_menu_left_col">Town:</div><div class="login_menu_right_col"><input class="textbox" type="text" name="town"/> </div></div>
+    <div class="row"><div class="login_menu_left_col">E-mail:</div><div class="login_menu_right_col"><input class="textbox" type="password" name="email"/> </div></div>
+    <div class="row"><div class="login_menu_left_col">Password:</div><div class="login_menu_right_col"><input class="textbox" type="text" name="password"/> </div></div>
+    <div class="row"><div class="login_menu_left_col">Repeat password:</div><div class="login_menu_right_col"><input class="textbox" type="password" name="rpassword"/> </div></div>
+    <!--<div class="error" th:if="${param.error}">-->
+    <!--Invalid username and password.-->
+<!--</div>-->
+    <div class="login_menu_submit"><input type="submit" value="Sign In"/></div>
+</form>
+</div>
+</body>
+</html>
