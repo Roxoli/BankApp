@@ -1,27 +1,4 @@
-.login_menu {
-    background: gainsboro;
-    width:400px;
-    margin: 50px auto;
-    padding: 50px 50px 50px 50px;
-    border-bottom-left-radius: 23px;
-    border-top-right-radius: 23px;
-    border: 2px gray solid;
-}
-.sign_in{
-    font-size: 10pt;
-    width: 100%;
-    text-align: center;
-    color: deepskyblue;
-}
-a {
-    text-decoration: none;
-}
-a:visited {
-    color: deepskyblue;
-}
-h2 {
-    text-align: center;
-}
+/*Logo - left-top*/
 .dot {
     font-family: "Droid Sans";
     font-size: 32pt;
@@ -32,16 +9,7 @@ h2 {
     color: deepskyblue;
     font-size: 32pt;
 }
-.login_menu_left_col {
-    width: 40%;
-    padding: 10px 0px 0px 50px;
-    text-align: left;
-}
-.login_menu_right_col {
-    width: 60%;
-    padding-top: 10px;
-    text-align: center;
-}
+
 .logo {
     background: gainsboro;
     text-align: center;
@@ -55,20 +23,23 @@ h2 {
     position: fixed;
     size: 30px;
 }
-.textbox {
-	padding-left: 3px;
-	border: 1px solid grey;
-	border-radius: 5px;
+/*---*/
+a {
+    text-decoration: none;
 }
-.textbox:hover {
-	border: 1px solid deepskyblue;
+a:visited {
+    color: deepskyblue;
 }
-.row {
+h2 {
+    text-align: center;
+}
+.row{
     margin-top: 80px;
     width: 20%;
     height: 250px;
     position: relative;
     left: 5%;
+
 }
 .working_space {
     background: whitesmoke;
@@ -106,12 +77,6 @@ table {
     width: 98%;
     border-collapse: collapse;
 }
-.error{
-    width:100%;
-    text-align: center;
-    color: orangered;
-    font-size: 10pt;
-}
 .user_login {
     position: fixed;
     right: 2px;
@@ -143,12 +108,6 @@ table {
     border-left: 3px grey solid;
     border-bottom: 3px lightslategrey solid;
     border-right: 3px lightslategrey solid;
-}
-.login_menu_submit {
-    padding-top: 10px;
-    text-align: center;
-    width: 200px;
-    margin: 0 auto;
 }
 body {
     background: #D3D3D3 url('../img/background.png') no-repeat;

@@ -1,0 +1,53 @@
+/*Main container*/
+.login_menu {
+    background: gainsboro;
+    width:400px;
+    margin: 50px auto;
+    padding: 50px 50px 50px 50px;
+    border-bottom-left-radius: 23px;
+    border-top-right-radius: 23px;
+    border: 2px gray solid;
+}
+.column {
+    display:flex;
+    justify-content: center;
+    width: 400px;
+    padding: 10px 0px 0px 0px;
+}
+.login_menu_left_col {
+    width: 40%;
+    margin-left: 10%;
+    text-align: left;
+}
+.login_menu_right_col {
+    width: 60%;
+    text-align: center;
+}
+.sign_in{
+    font-size: 10pt;
+    width: 100%;
+    text-align: center;
+    color: deepskyblue;
+}
+
+.textbox {
+	padding-left: 3px;
+	border: 1px solid grey;
+	border-radius: 5px;
+}
+.textbox:hover {
+	border: 1px solid deepskyblue;
+}
+
+.error{
+    width:100%;
+    text-align: center;
+    color: orangered;
+    font-size: 10pt;
+}
+.login_menu_submit {
+    padding-top: 10px;
+    text-align: center;
+    width: 200px;
+    margin: 0 auto;
+}

@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/layout.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main_layout.css}" href="../static/css/main_layout.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login&create_account_layout.css}" href="../static/css/login&create_account_layout.css"/>
     <title>Spring Security Example </title>
 </head>
 <body>
@@ -11,8 +12,8 @@
 <div class="login_menu">
     <h2>Login</h2>
 <form th:action="@{/login}" method="post">
-    <div class="row"><div class="login_menu_left_col">User Name:</div><div class="login_menu_right_col"><input class="textbox" type="text" name="username"/> </div></div>
-    <div class="row"><div class="login_menu_left_col">Password:</div><div class="login_menu_right_col"><input class="textbox" type="password" name="password"/> </div></div>
+    <div class="column"><div class="login_menu_left_col">User Name:</div><div class="login_menu_right_col"><input class="textbox" type="text" name="username"/> </div></div>
+    <div class="column"><div class="login_menu_left_col">Password:</div><div class="login_menu_right_col"><input class="textbox" type="password" name="password"/> </div></div>
 <div class="error" th:if="${param.error}">
     Invalid username and password.
 </div>
@@ -20,7 +21,7 @@
     You have been logged out.
 </div>
     <div class="login_menu_submit"><input type="submit" value="Log In"/></div>
-    <a th:href="@{/add_user}"><div class="sign_in">You have not an account? <strong>Sign up!</strong></div></a>
+    <a th:href="@{/create_account}"><div class="sign_in">You have not an account? <strong>Sign up!</strong></div></a>
 </form>
 </div>
 </body>
