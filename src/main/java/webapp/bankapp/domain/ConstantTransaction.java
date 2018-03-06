@@ -1,7 +1,6 @@
-package webapp.bankapp.domian;
+package webapp.bankapp.domain;
 
 import lombok.*;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -9,7 +8,7 @@ import java.util.Date;
 
 @Data
 @Entity
-public class History {
+public class ConstantTransaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,12 +17,10 @@ public class History {
     private String accountNumber;
     private Date date;
     private BigDecimal transaction;
-    private String adress;
-    private String description;
+    private String address;
+    private String String;
 
     @ManyToOne
     private BankAccount bankAccount;
 
-    @Enumerated(value = EnumType.STRING)
-    private TransactionStatus transactionStatus;
 }

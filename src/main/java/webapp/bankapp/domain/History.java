@@ -1,4 +1,4 @@
-package webapp.bankapp.domian;
+package webapp.bankapp.domain;
 
 import lombok.*;
 
@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Data
 @Entity
-public class ConstantTransaction {
+public class History {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,10 +17,12 @@ public class ConstantTransaction {
     private String accountNumber;
     private Date date;
     private BigDecimal transaction;
-    private String adress;
-    private String String;
+    private String address;
+    private String description;
 
     @ManyToOne
     private BankAccount bankAccount;
 
+    @Enumerated(value = EnumType.STRING)
+    private TransactionStatus transactionStatus;
 }

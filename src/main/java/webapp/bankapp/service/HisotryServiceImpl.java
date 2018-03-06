@@ -1,7 +1,7 @@
 package webapp.bankapp.service;
 
 import org.springframework.stereotype.Service;
-import webapp.bankapp.domian.History;
+import webapp.bankapp.domain.History;
 import webapp.bankapp.repository.HistoryRepository;
 
 @Service

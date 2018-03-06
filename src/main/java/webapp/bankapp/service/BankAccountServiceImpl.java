@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import webapp.bankapp.domian.BankAccount;
+import webapp.bankapp.domain.BankAccount;
 import webapp.bankapp.repository.BankAccountRepository;
 
 import java.util.Random;
@@ -52,16 +52,16 @@ public class BankAccountServiceImpl implements BankAccountService {
 
     @Override
     @Transactional
-    public BankAccount createNewAccount(BankAccount source) {
-            BankAccount bankAccount = new BankAccount();
-            bankAccount.setLogin(generateLogin(bankAccount));
-            bankAccount.setPassword(passwordEncoder.encode(bankAccount.getPassword()));
-            bankAccount.setFirstName(source.getFirstName());
-            bankAccount.setLastName(source.getLastName());
-            bankAccount.setAccountNumber(generateAccountNumber());
-            bankAccount.setAddress(source.getAddress());
-            bankAccount.setEmail(source.getEmail());
-            bankAccount.setTown(source.getTown());
+    public BankAccount createNewAccount(BankAccount bankAccount) {
+//            BankAccount newBankAccount = new BankAccount();
+        bankAccount.setLogin(generateLogin(bankAccount));
+        bankAccount.setPassword(passwordEncoder.encode(bankAccount.getPassword()));
+//            newBankAccount.setFirstName(bankAccount.getFirstName());
+//            newBankAccount.setLastName(bankAccount.getLastName());
+//            newBankAccount.setAccountNumber(generateAccountNumber());
+//            newBankAccount.setAddress(bankAccount.getAddress());
+//            newBankAccount.setEmail(bankAccount.getEmail());
+//            newBankAccount.setTown(bankAccount.getTown());
 
         return bankAccountRepository.save(bankAccount);
     }

@@ -11,7 +11,7 @@
 
 <div class="login_menu">
     <h2>Login</h2>
-<form action="#" th:action="@{/createAccount}" th:object="${bankAccount}" method="post">
+<form action="#" th:action="@{/create_account_new}" th:object="${bankAccount}" method="post">
     <div class="row"><div class="login_menu_left_col">First name:</div><div class="login_menu_right_col"><input class="textbox" type="text" th:field="*{firstName}"/> </div></div>
     <div class="row"><div class="login_menu_left_col">Last name:</div><div class="login_menu_right_col"><input class="textbox" type="text" th:field="*{lastName}"/> </div></div>
     <div class="row"><div class="login_menu_left_col">Address:</div><div class="login_menu_right_col"><input class="textbox" type="password" th:field="*{address}"/> </div></div>

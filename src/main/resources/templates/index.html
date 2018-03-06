@@ -9,7 +9,7 @@
     <title>Bank app</title>
 </head>
 <body>
-<a th:href="@{login.html}"><div class="logo"><span class="bank_name">Bank app</span><span class="dot">.</span></div></a>
+<a th:href="@{/login}"><div class="logo"><span class="bank_name">Bank app</span><span class="dot">.</span></div></a>
 <div class="user_login"><span th:remove="all">Zalogowany jako [[${#httpServletRequest.remoteUser}]]</span></div>
 <div class="row">
     <a href="index.html"><div class="menu">Stan konta</div></a>

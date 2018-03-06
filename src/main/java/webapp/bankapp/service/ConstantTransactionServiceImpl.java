@@ -2,7 +2,7 @@ package webapp.bankapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import webapp.bankapp.domian.ConstantTransaction;
+import webapp.bankapp.domain.ConstantTransaction;
 import webapp.bankapp.repository.ConstantTransactionRepository;
 
 @Service

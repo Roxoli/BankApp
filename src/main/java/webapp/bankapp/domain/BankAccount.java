@@ -1,4 +1,4 @@
-package webapp.bankapp.domian;
+package webapp.bankapp.domain;
 
 import lombok.*;
 
@@ -8,8 +8,8 @@ import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Set;
 
-@Entity
 @Data
+@Entity
 public class BankAccount {
 
     @Id
