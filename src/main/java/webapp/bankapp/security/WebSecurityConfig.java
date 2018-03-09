@@ -19,7 +19,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout().logoutSuccessUrl("/login")
                 .and()
                 .authorizeRequests()
-                .antMatchers("/webjars/**", "/css/**", "/img/**", "/create_account", "/login").permitAll()
+                .antMatchers("/webjars/**", "/css/**", "/img/**", "/creator", "/index", "/login").permitAll()
                 .anyRequest().authenticated();
     }
 
