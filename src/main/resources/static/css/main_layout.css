@@ -44,13 +44,20 @@ a:visited {
 h2 {
     text-align: center;
 }
-.row{
-    margin-top: 80px;
-    width: 20%;
-    height: 250px;
-    position: relative;
-    left: 5%;
-
+.highlighted {
+    font-weight: bold;
+}
+.passwordError{
+    margin-top: 5px;
+    text-align: center;
+    font-size: 10pt;
+    color: cadetblue;
+}
+.column {
+    display:flex;
+    justify-content: center;
+    width: 400px;
+    padding: 10px 0px 0px 0px;
 }
 .working_space {
     background: whitesmoke;

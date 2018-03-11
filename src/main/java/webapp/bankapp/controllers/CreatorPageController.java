@@ -13,23 +13,24 @@ import javax.validation.Valid;
 
 @Slf4j
 @Controller
-public class CreatorController {
+public class CreatorPageController {
 
-    @Autowired
-    private final BankAccountService bankAccountService;
+//    @Autowired
+//    private final BankAccountService bankAccountService;
+//
+//    public CreatorPageController(BankAccountService bankAccountService) {
+//        this.bankAccountService = bankAccountService;
+//    }
 
-    public CreatorController(BankAccountService bankAccountService) {
-        this.bankAccountService = bankAccountService;
-    }
-
-    @RequestMapping(value = "create", method = RequestMethod.POST)
+    @GetMapping
+    @RequestMapping("/new_account")
     public String processAdd(@Valid @ModelAttribute("bankAccount") BankAccount bankAccount, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            System.out.println("An Error");
+            log.info("An error during getting data from the form.");
+            return "creator";
         }
         model.addAttribute("bankAccount", bankAccount);
-        return "login";
+        log.info("The data is correct.");
+        return "new_account";
     }
-
-
 }

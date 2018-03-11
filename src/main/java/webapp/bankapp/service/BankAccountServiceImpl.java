@@ -1,15 +1,19 @@
 package webapp.bankapp.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import webapp.bankapp.domain.BankAccount;
 import webapp.bankapp.repository.BankAccountRepository;
 
+import javax.validation.Valid;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+@Slf4j
 @Service
 public class BankAccountServiceImpl implements BankAccountService {
 
@@ -53,15 +57,10 @@ public class BankAccountServiceImpl implements BankAccountService {
     @Override
     @Transactional
     public BankAccount createNewAccount(BankAccount bankAccount) {
-//            BankAccount newBankAccount = new BankAccount();
+        log.info("I'm in service.");
         bankAccount.setLogin(generateLogin(bankAccount));
         bankAccount.setPassword(passwordEncoder.encode(bankAccount.getPassword()));
-//            newBankAccount.setFirstName(bankAccount.getFirstName());
-//            newBankAccount.setLastName(bankAccount.getLastName());
-//            newBankAccount.setAccountNumber(generateAccountNumber());
-//            newBankAccount.setAddress(bankAccount.getAddress());
-//            newBankAccount.setEmail(bankAccount.getEmail());
-//            newBankAccount.setTown(bankAccount.getTown());
+        bankAccount.setAccountNumber(generateAccountNumber());
 
         return bankAccountRepository.save(bankAccount);
     }

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Spring Security Example </title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main_layout.css}" href="../static/css/main_layout.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login_and_create_account_layout.css}" href="../static/css/login_and_create_account_layout.css"/>
+</head>
+<body>
+<a th:href="@{/login}"><div class="logo"><span class="bank_name">Bank app</span><span class="dot">.</span></div></a>
+<!--/*@thymesVar id="bankAccount" type="webapp.bankapp.domain.BankAccount"*/-->
+<div class="login_menu">
+    <h2>Witaj</h2>
+    <div>Udało Ci się utworzyć nowego użytkownika.</div>
+    <div>Witaj <span class="highlighted" th:text="${bankAccount.getFirstName()} +' '+${bankAccount.getLastName()}"></span></div>
+    <div>Twój login to: <span class="highlighted" th:text="${bankAccount.getLogin()}"></span></div>
+    <div>Numer bankowy: <span class="highlighted" th:text="${bankAccount.getAccountNumber()}"></span></div>
+    <a th:href="@{/login}"><div class="sign_in">Wróć do strony logowania</div></a>
+</div>
+</body>
+</html>

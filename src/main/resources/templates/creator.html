@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html xmlns:bankAccount="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
+    <title>Spring Security Example </title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/main_layout.css}" href="../static/css/main_layout.css"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/login_and_create_account_layout.css}" href="../static/css/login_and_create_account_layout.css"/>
-    <title>Spring Security Example </title>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script type="text/javascript"><!--
+    function checkPasswordValidation() {
+        var password = $("#password").val();
+        var confirmPassword = $("#passwordValidation").val();
+
+        if (password != confirmPassword)
+            $("#passwordError").html("Powtórzone hasło nie jest identyczne w wcześniej podanym hasłem!");
+        else
+            $("#passwordError").html("Hasło ok.");
+    }
+    //--></script>
 </head>
 <body>
 <a th:href="@{/login}"><div class="logo"><span class="bank_name">Bank app</span><span class="dot">.</span></div></a>
@@ -12,23 +25,17 @@
 <div class="login_menu">
     <h2>Login</h2>
     <!--/*@thymesVar id="bankAccount" type="webapp.bankapp.domain.BankAccount"*/-->
-<form th:object="${bankAccount}" th:action="@{/create}" method="post">
-    <div class="row">
-        <div class="login_menu_left_col">First name:</div>
-        <div class="login_menu_right_col"><input class="textbox" type="text" th:field="*{firstName}"/></div>
-        <div class="login_menu_left_col">Last name:</div>
-        <div class="login_menu_right_col"><input class="textbox" type="text" th:field="*{lastName}"/></div>
-        <div class="login_menu_left_col">Address:</div>
-        <div class="login_menu_right_col"><input class="textbox" type="password" th:field="*{address}"/></div>
+<form th:object="${bankAccount}" th:action="@{/new_account}">
+    <div class="column"><div class="login_menu_left_col">First name:</div><div class="login_menu_right_col"><input class="textbox" type="text" th:field="*{firstName}"/></div></div>
+    <div class="column"><div class="login_menu_left_col">Last name:</div><div class="login_menu_right_col"><input class="textbox" type="text" th:field="*{lastName}"/></div></div>
+    <div class="column"><div class="login_menu_left_col">Address:</div><div class="login_menu_right_col"><input class="textbox" type="text" th:field="*{address}"/></div></div>
+    <div class="column"><div class="login_menu_left_col">Town:</div><div class="login_menu_right_col"><input class="textbox" type="text" th:field="*{town}"/> </div></div>
+    <div class="column"><div class="login_menu_left_col">E-mail:</div><div class="login_menu_right_col"><input class="textbox" type="text" th:field="*{email}"/> </div></div>
+    <div class="column"><div class="login_menu_left_col">Password:</div><div class="login_menu_right_col"><input class="textbox" type="password" id="password" th:field="*{password}"/> </div></div>
+    <div class="column"><div class="login_menu_left_col">Repeat password:</div><div class="login_menu_right_col"><input class="textbox" type="password" id="passwordValidation" onkeyup="checkPasswordValidation();"/> </div></div>
+    <div class="error" id="passwordError">
     </div>
-    <div class="row"><div class="login_menu_left_col">Town:</div><div class="login_menu_right_col"><input class="textbox" type="text" th:field="*{town}"/> </div></div>
-    <div class="row"><div class="login_menu_left_col">E-mail:</div><div class="login_menu_right_col"><input class="textbox" type="password" th:field="*{email}"/> </div></div>
-    <div class="row"><div class="login_menu_left_col">Password:</div><div class="login_menu_right_col"><input class="textbox" type="text" th:field="*{password}"/> </div></div>
-    <!--<div class="row"><div class="login_menu_left_col">Repeat password:</div><div class="login_menu_right_col"><input class="textbox" type="password" /> </div></div>-->
-    <!--<div class="error" th:if="${param.error}">-->
-    <!--Invalid username and password.-->
-<!--</div>-->
-    <div class="login_menu_submit"><input type="submit" value="Sign In"/></div>
+    <div class="login_menu_submit"><button type="submit" class="new_account_submit">Utwórz</button></div>
 </form>
 </div>
 </body>

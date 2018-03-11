@@ -18,32 +18,36 @@ public class BankAccount {
 
     private String accountNumber;
 
-    @NotNull
-    @Size(min=2)
+//    @NotNull
     private String login;
 
-    @NotNull
-    @Size(min=8)
+//    @NotNull
+//    @Size(min=8)
     private String password;
 
-    @NotNull
-    @Size(min=2)
+    @Transient
+//    @NotNull
+//    @Size(min=8)
+    private String passwordValidation;
+
+//    @NotNull
+//    @Size(min=2)
     private String firstName;
 
-    @NotNull
-    @Size(min=2)
+//    @NotNull
+//    @Size(min=2)
     private String lastName;
 
-    @NotNull
-    @Size(min=2)
+//    @NotNull
+//    @Size(min=2)
     private String town;
 
-    @NotNull
-    @Size(min=2)
+//    @NotNull
+//    @Size(min=2)
     private String address;
 
-    @NotNull
-    @Size(min=2)
+//    @NotNull
+//    @Size(min=2)
     private String email;
     private BigDecimal balance;
 

@@ -11,7 +11,7 @@
 <body>
 <a th:href="@{/login}"><div class="logo"><span class="bank_name">Bank app</span><span class="dot">.</span></div></a>
 <div class="user_login"><span th:remove="all">Zalogowany jako [[${#httpServletRequest.remoteUser}]]</span></div>
-<div class="row">
+<div class="column">
     <a href="index.html"><div class="menu">Stan konta</div></a>
     <a href="transaction.html"><div class="menu">Przelew</div></a>
     <a href="constant_transaction.html"><div class="menu">Przelewy stałe</div></a>
