@@ -28,3 +28,4 @@ mvnw.*
 hs_err_pid*
 
 /Temp
+/.idea/workspace.xml
