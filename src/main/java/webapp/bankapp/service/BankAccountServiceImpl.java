@@ -21,6 +21,8 @@ public class BankAccountServiceImpl implements BankAccountService {
     private PasswordEncoder passwordEncoder;
     private String login = "";
     private Random random = new Random();
+    private Boolean isLogin = false;
+    private long i;
 
     @Autowired
     public BankAccountServiceImpl(BankAccountRepository bankAccountRepository, PasswordEncoder passwordEncoder) {
@@ -28,9 +30,9 @@ public class BankAccountServiceImpl implements BankAccountService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    private String generateLogin(BankAccount bankAccount){
-        login += bankAccount.getFirstName().substring(0,2)
-                + bankAccount.getLastName().substring(0,2)
+    private String generateLogin(BankAccount bankAccount) {
+        login += bankAccount.getFirstName().substring(0, 3).toLowerCase()
+                + bankAccount.getLastName().substring(0, 3).toLowerCase()
                 + random.nextInt(10) + 1
                 + random.nextInt(10) + 1
                 + random.nextInt(10) + 1
@@ -38,7 +40,7 @@ public class BankAccountServiceImpl implements BankAccountService {
         return login;
     }
 
-    public String generateAccountNumber() {
+    private String generateAccountNumber() {
         String prefix; // first two letters from the IBAN Number
         int controlNumber; // 3 and 4 number from the IBAN
         int bankNumber; // 8 Numbers from the Bank
@@ -57,7 +59,7 @@ public class BankAccountServiceImpl implements BankAccountService {
     @Override
     @Transactional
     public BankAccount createNewAccount(BankAccount bankAccount) {
-        log.info("I'm in service.");
+        log.info("createNewAccount service.");
         bankAccount.setLogin(generateLogin(bankAccount));
         bankAccount.setPassword(passwordEncoder.encode(bankAccount.getPassword()));
         bankAccount.setAccountNumber(generateAccountNumber());
@@ -65,4 +67,16 @@ public class BankAccountServiceImpl implements BankAccountService {
         return bankAccountRepository.save(bankAccount);
     }
 
+    @Override
+    public Boolean login(BankAccount bankAccount) {
+        log.info("login service");
+        for (long i=0; i<bankAccountRepository.count(); i++) {
+            if (bankAccountRepository.findById(i).get().getLogin() == bankAccount.getLogin() &&
+                    passwordEncoder.encode(bankAccountRepository.findById(i).get().getPassword()) ==
+                    passwordEncoder.encode(bankAccount.getPassword())) {
+                isLogin = true;
+            }
+        }
+        return isLogin;
+    }
 }

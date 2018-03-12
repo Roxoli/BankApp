@@ -15,12 +15,12 @@ import javax.validation.Valid;
 @Controller
 public class CreatorPageController {
 
-//    @Autowired
-//    private final BankAccountService bankAccountService;
-//
-//    public CreatorPageController(BankAccountService bankAccountService) {
-//        this.bankAccountService = bankAccountService;
-//    }
+    @Autowired
+    private final BankAccountService bankAccountService;
+
+    public CreatorPageController(BankAccountService bankAccountService) {
+        this.bankAccountService = bankAccountService;
+    }
 
     @GetMapping
     @RequestMapping("/new_account")
@@ -31,6 +31,7 @@ public class CreatorPageController {
         }
         model.addAttribute("bankAccount", bankAccount);
         log.info("The data is correct.");
+        bankAccountService.createNewAccount(bankAccount);
         return "new_account";
     }
 }

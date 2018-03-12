@@ -11,7 +11,7 @@
 
 <div class="login_menu">
     <h2>Login</h2>
-<form th:action="@{/login}" method="post">
+<form th:action="@{/index}">
     <div class="column"><div class="login_menu_left_col">User Name:</div><div class="login_menu_right_col"><input class="textbox" type="text" name="username"/> </div></div>
     <div class="column"><div class="login_menu_left_col">Password:</div><div class="login_menu_right_col"><input class="textbox" type="password" name="password"/> </div></div>
 <div class="error" th:if="${param.error}">
