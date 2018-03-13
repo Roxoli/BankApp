@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import webapp.bankapp.domain.BankAccount;
 import webapp.bankapp.service.BankAccountService;
@@ -18,23 +19,35 @@ import javax.validation.Valid;
 public class LoginPageController {
 
     @Autowired
-    BankAccountService bankAccountService;
+    private final BankAccountService bankAccountService;
+
+    public LoginPageController(BankAccountService bankAccountService) {
+        this.bankAccountService = bankAccountService;
+    }
 
     @RequestMapping("/creator")
-    public String getCreateAccountPage(@ModelAttribute("bankAccount") BankAccount bankAccount){
+    public String getCreateAccountPage(@ModelAttribute("bankAccount") BankAccount bankAccount) {
         return "creator";
     }
 
-    @GetMapping
+    @RequestMapping("/login")
+    public String getLoginPage(@ModelAttribute("bankAccount") BankAccount bankAccount) {
+        return "login";
+    }
+
+    @PostMapping
     @RequestMapping("/index")
-    public String login(@Valid @ModelAttribute("bankAccount") BankAccount bankAccount){
-        if(bankAccountService.login(bankAccount)) {
-            log.info("Login successes.");
-            return "index";
-        } else {
+    public String getIndexPageAfterLogin(@Valid @ModelAttribute("bankAccount") BankAccount bankAccount, BindingResult bindingResult, Model model) {
+        String page;
+        model.addAttribute("bankAccount", bankAccount);
+        if (!bindingResult.hasErrors() && !bankAccountService.login(bankAccount)) {
             log.info("Login failed");
-            return "login";
-        }
+            page = "login";
+        } else {
+            log.info("Login successes.");
+            page ="index";
+            }
+        return page;
     }
 
 }

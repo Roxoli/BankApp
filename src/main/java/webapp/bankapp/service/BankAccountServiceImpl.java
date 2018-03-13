@@ -2,6 +2,7 @@ package webapp.bankapp.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,6 +11,7 @@ import webapp.bankapp.domain.BankAccount;
 import webapp.bankapp.repository.BankAccountRepository;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -21,8 +23,7 @@ public class BankAccountServiceImpl implements BankAccountService {
     private PasswordEncoder passwordEncoder;
     private String login = "";
     private Random random = new Random();
-    private Boolean isLogin = false;
-    private long i;
+
 
     @Autowired
     public BankAccountServiceImpl(BankAccountRepository bankAccountRepository, PasswordEncoder passwordEncoder) {
@@ -31,13 +32,24 @@ public class BankAccountServiceImpl implements BankAccountService {
     }
 
     private String generateLogin(BankAccount bankAccount) {
-        login += bankAccount.getFirstName().substring(0, 3).toLowerCase()
-                + bankAccount.getLastName().substring(0, 3).toLowerCase()
-                + random.nextInt(10) + 1
-                + random.nextInt(10) + 1
-                + random.nextInt(10) + 1
-                + random.nextInt(10) + 1;
+        do {
+            login += bankAccount.getFirstName().substring(0, 3).toLowerCase()
+                    + bankAccount.getLastName().substring(0, 3).toLowerCase()
+                    + ThreadLocalRandom.current().nextInt(1001, 9999);
+
+            existAlready(login);
+        } while (existAlready(login));
         return login;
+    }
+
+    private boolean existAlready(String login){
+        boolean isExisting = false;
+        for(long i = 1; i<=bankAccountRepository.count(); i++) {
+            if(login.equals(bankAccountRepository.findById(i).get().getLogin())){
+                isExisting = true;
+            }
+        }
+        return isExisting;
     }
 
     private String generateAccountNumber() {
@@ -61,19 +73,21 @@ public class BankAccountServiceImpl implements BankAccountService {
     public BankAccount createNewAccount(BankAccount bankAccount) {
         log.info("createNewAccount service.");
         bankAccount.setLogin(generateLogin(bankAccount));
-        bankAccount.setPassword(passwordEncoder.encode(bankAccount.getPassword()));
+        bankAccount.setPassword(BCrypt.hashpw(bankAccount.getPassword(),BCrypt.gensalt()));
         bankAccount.setAccountNumber(generateAccountNumber());
 
         return bankAccountRepository.save(bankAccount);
     }
 
     @Override
+    @Transactional
     public Boolean login(BankAccount bankAccount) {
-        log.info("login service");
-        for (long i=0; i<bankAccountRepository.count(); i++) {
-            if (bankAccountRepository.findById(i).get().getLogin() == bankAccount.getLogin() &&
-                    passwordEncoder.encode(bankAccountRepository.findById(i).get().getPassword()) ==
-                    passwordEncoder.encode(bankAccount.getPassword())) {
+        Boolean isLogin = false;
+        log.info("login service.");
+        for (long i = 1; i <= bankAccountRepository.count(); i++) {
+            if (bankAccountRepository.findById(i).get().getLogin().equals(bankAccount.getLogin()) &&
+                BCrypt.checkpw(bankAccount.getPassword(), bankAccountRepository.findById(i).get().getPassword())){
+                log.info("True " + bankAccountRepository.findById(i).get().getLogin());
                 isLogin = true;
             }
         }
