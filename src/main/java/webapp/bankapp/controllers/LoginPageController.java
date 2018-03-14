@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import webapp.bankapp.domain.BankAccount;
 import webapp.bankapp.service.BankAccountService;
 
@@ -35,9 +32,8 @@ public class LoginPageController {
         return "login";
     }
 
-    @PostMapping
-    @RequestMapping("/index")
-    public String getIndexPageAfterLogin(@Valid @ModelAttribute("bankAccount") BankAccount bankAccount, BindingResult bindingResult, Model model) {
+    @PostMapping("/index")
+    public String getLoginPageAfterLogin(@Valid @ModelAttribute("bankAccount") BankAccount bankAccount, BindingResult bindingResult, Model model) {
         String page;
         model.addAttribute("bankAccount", bankAccount);
         if (!bindingResult.hasErrors() && !bankAccountService.login(bankAccount)) {
@@ -45,6 +41,8 @@ public class LoginPageController {
             page = "login";
         } else {
             log.info("Login successes.");
+            bankAccount = bankAccountService.getBankAccountByLogin(bankAccount.getLogin());
+            model.addAttribute("bankAccount", bankAccount);
             page ="index";
             }
         return page;

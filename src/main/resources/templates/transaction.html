@@ -4,18 +4,18 @@
     <meta charset="UTF-8"/>
     <title>Bank app main page</title>
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" type="text/css" th:href="@{/css/layout.css}" href="../static/css/main_layout.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main_layout.css}" href="../static/css/main_layout.css"/>
     <title>Bank app</title>
 </head>
 <body>
-<a th:href="@{login.html}"><div class="logo"><span class="bank_name">Bank app</span><span class="dot">.</span></div></a>
-<div class="user_login"><span th:remove="all">Zalogowany jako [[${#httpServletRequest.remoteUser}]]</span></div>
-<div class="column">
-    <a href="index.html"><div class="menu">Stan konta</div></a>
-    <a href="transaction.html"><div class="menu">Przelew</div></a>
-    <a href="constant_transaction.html"><div class="menu">Przelewy stałe</div></a>
-    <a href="history.html"><div class="menu">Historia transakcji</div></a>
+<!--/*@thymesVar id="bankAccount" type="webapp.bankapp.domain.BankAccount"*/-->
+<a th:href="@{/}"><div class="logo"><span class="bank_name">Bank app</span><span class="dot">.</span></div></a>
+<div class="user_login"><span th:text="'Zalogowany jako ' + ${bankAccount.firstName} + ' ' + ${bankAccount.lastName}">Zalogowany jako Imię i nazwisko użytkownika</span></div>
+<div class="columnIndex">
+    <a th:href="@{/index}" href="index.html"><div class="menu">Stan konta</div></a>
+    <a th:href="@{/transaction}" href="transaction.html"><div class="menu">Przelew</div></a>
+    <a th:href="@{/constant_transaction}" href="constant_transaction.html"><div class="menu">Przelewy stałe</div></a>
+    <a th:href="@{/history}" href="history.html"><div class="menu">Historia transakcji</div></a>
 </div>
 <div class="working_space"></div>
 

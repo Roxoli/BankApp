@@ -12,7 +12,7 @@
 <div class="login_menu">
     <h2>Login</h2>
     <!--/*@thymesVar id="bankAccount" type="webapp.bankapp.domain.BankAccount"*/-->
-    <form th:object="${bankAccount}" th:action="@{/index}" method="POST">
+    <form th:object="${bankAccount}" th:action="@{/index}"  method="POST">
     <div class="column"><div class="login_menu_left_col">User Name:</div><div class="login_menu_right_col"><input class="textbox" type="text" th:field="*{login}"/> </div></div>
     <div class="column"><div class="login_menu_left_col">Password:</div><div class="login_menu_right_col"><input class="textbox" type="password" th:field="*{password}"/> </div></div>
 <div class="error" th:if="${param.error}">

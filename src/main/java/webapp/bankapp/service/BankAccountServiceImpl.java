@@ -43,13 +43,10 @@ public class BankAccountServiceImpl implements BankAccountService {
     }
 
     private boolean existAlready(String login){
-        boolean isExisting = false;
-        for(long i = 1; i<=bankAccountRepository.count(); i++) {
-            if(login.equals(bankAccountRepository.findById(i).get().getLogin())){
-                isExisting = true;
-            }
+       if(bankAccountRepository.findOneByLogin(login)==null){
+           return true;
         }
-        return isExisting;
+        return false;
     }
 
     private String generateAccountNumber() {
@@ -79,18 +76,22 @@ public class BankAccountServiceImpl implements BankAccountService {
         return bankAccountRepository.save(bankAccount);
     }
 
+
+
     @Override
     @Transactional
     public Boolean login(BankAccount bankAccount) {
         Boolean isLogin = false;
+        BankAccount user = bankAccountRepository.findOneByLogin(bankAccount.getLogin());
         log.info("login service.");
-        for (long i = 1; i <= bankAccountRepository.count(); i++) {
-            if (bankAccountRepository.findById(i).get().getLogin().equals(bankAccount.getLogin()) &&
-                BCrypt.checkpw(bankAccount.getPassword(), bankAccountRepository.findById(i).get().getPassword())){
-                log.info("True " + bankAccountRepository.findById(i).get().getLogin());
-                isLogin = true;
-            }
+        if(user.getLogin().equals(bankAccount.getLogin()) &&
+                BCrypt.checkpw(bankAccount.getPassword(), user.getPassword())) {
+            return true;
         }
         return isLogin;
+    }
+
+    public BankAccount getBankAccountByLogin(String login) {
+        return bankAccountRepository.findOneByLogin(login);
     }
 }

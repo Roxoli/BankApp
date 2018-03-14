@@ -7,4 +7,5 @@ public interface BankAccountService {
 
     Boolean login(BankAccount bankAccount);
 
+    BankAccount getBankAccountByLogin(String login);
 }
